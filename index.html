@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Local</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="browser-container">
+        
+        <div class="browser-bar">
+            <div class="browser-controls">
+                <button class="browser-btn btn-close"></button>
+                <button class="browser-btn btn-minimize"></button>
+                <button class="browser-btn btn-maximize"></button>
+            </div>
+            <div class="url-bar">https://home</div>
+        </div>
+
+    
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('inicio', event)">Inicio</button>
+            <button class="tab" onclick="showTab('usuarios', event)">Gestión Usuarios</button>
+            <button class="tab" onclick="showTab('publicaciones', event)">Publicaciones</button>
+        </div>
+
+     
+        <div id="inicio" class="tab-content active">
+            <h2 class="form-title">Sistema de Gestión Usuarios</h2>
+            
+            <div class="data-section">
+                <div class="data-controls">
+                    <select id="dataSelector">
+                        <option value="users">Usuarios</option>
+                        <option value="posts">Publicaciones</option>
+                        <option value="comments">Comentarios</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="loadData()">Cargar Datos</button>
+                </div>
+                
+                <div id="tableContainer">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Sitio Web</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="loading">Selecciona un tipo de datos y presiona "Cargar Datos"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="usuarios" class="tab-content">
+            <div class="form-container">
+                <h2 class="form-title">Gestión Usuarios</h2>
+                
+                <form id="userForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" id="usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaIngreso">Fecha Ingreso</label>
+                            <input type="date" id="fechaIngreso" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sitioWeb">Sitio Web</label>
+                            <input type="url" id="sitioWeb">
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="cancelarForm()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="publicaciones" class="tab-content">
+            <div class="form-container">
+                <h2 class="form-title">Nueva Publicación</h2>
+                
+                <form id="postForm">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" id="titulo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contenido">Contenido</label>
+                        <textarea id="contenido" rows="5" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userId">ID Usuario</label>
+                        <input type="number" id="userId" min="1" required>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="cancelarPost()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
